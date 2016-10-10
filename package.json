@@ -1,0 +1,21 @@
+{
+  "name": "wish-cli",
+  "version": "0.6.0",
+  "author": "André Kaustell <andre.kaustell@controlthings.fi>",
+  "description": "Wish CLI",
+  "main": "src/cli.js",
+  "dependencies": {
+    "wish-app": "0.6.10"
+  },
+  "bin": {
+    "wishcli": "./bin/cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://wish.cto.fi:/git/wish-cli#master"
+  },
+  "scripts": {
+    "test": "mocha",
+    "cover": "istanbul cover --hook-run-in-context _mocha -- -R spec"
+  }
+}

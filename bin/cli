@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var Cli = require('../src/cli.js').Cli;
+new Cli();
