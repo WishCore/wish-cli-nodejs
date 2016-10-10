@@ -1,6 +1,6 @@
 {
   "name": "wish-cli",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "André Kaustell <andre.kaustell@controlthings.fi>",
   "description": "Wish CLI",
   "main": "src/cli.js",
