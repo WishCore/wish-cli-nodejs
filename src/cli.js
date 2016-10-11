@@ -90,22 +90,7 @@ function Cli() {
                 }
             }
 
-            function println(msg) {
-                repl.outputStream.write(msg + "\n");
-            }
-
-            function error(msg) {
-                return "ERROR: " + msg;
-            }
-
             syncctx();
-
-            
-            // Write command from command line to repl
-            //if (cmd) {
-            //    repl.rli.write(cmd + "\n");
-            //}
-            
        });
     });
 }
