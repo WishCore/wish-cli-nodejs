@@ -5,7 +5,8 @@
   "description": "Wish CLI",
   "main": "src/cli.js",
   "dependencies": {
-    "wish-app": "0.6.10"
+    "wish-app": "0.6.10",
+    "wish-bson": "0.2.8"
   },
   "bin": {
     "wishcli": "./bin/cli"

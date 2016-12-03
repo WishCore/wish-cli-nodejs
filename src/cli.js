@@ -1,5 +1,6 @@
 var App = require('wish-app').App;
 var inspect = require("util").inspect;
+var BSON = require('wish-bson').BSONPure.BSON;
 
 var useColors = true;
 var maxInspectDepth = 10;
@@ -88,6 +89,7 @@ function Cli() {
                 for(var i in Core) {
                     repl.context[i] = Core[i];
                 }
+                repl.context['BSON'] = BSON;
             }
 
             syncctx();
