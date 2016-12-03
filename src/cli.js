@@ -59,10 +59,11 @@ function Cli() {
             };
 
             var repl = require("repl").start({
-                prompt : "wish> ",
-                input : process.stdin,
-                output : process.stdout,
-                terminal : true,
+                prompt: "wish> ",
+                input: process.stdin,
+                output: process.stdout,
+                terminal: true,
+                ignoreUndefined: true,
                 writer : function (obj) {
                     return inspect(obj, maxInspectDepth, null, useColors);
                 }
