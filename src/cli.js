@@ -17,7 +17,7 @@ if (!process.env.WSID) {
 
 function Cli() {
 
-    var app = new App({name: 'Chat CLI', permissions: ['services.send', 'identity.list'] });
+    var app = new App({name: 'Wish CLI', permissions: ['services.send', 'identity.list'] });
 
     app.once('ready', function() {
 
