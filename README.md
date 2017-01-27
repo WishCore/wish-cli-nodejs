@@ -4,6 +4,8 @@ A simple REPL based command line tool for accessing the Wish Core.
 
 Probably works with several different node.js versions, but if you encounter problems, try using v6.9.2.
 
+More documetation will be added in good time.
+
 ## Install
 
 ```sh
