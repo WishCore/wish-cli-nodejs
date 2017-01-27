@@ -1,3 +1,10 @@
+
+if(!process.env.CORE && !process.env.TCP) {
+    console.log("Connecting using default parameters, unsecure connection to localhost:9094.");
+    process.env.CORE = 'localhost:9094';
+    process.env.TCP = '1';
+}
+
 var App = require('wish-app').App;
 var inspect = require("util").inspect;
 
@@ -16,7 +23,7 @@ if (!process.env.WSID) {
 
 function Cli() {
 
-    var app = new App({name: 'Chat CLI', permissions: ['services.send', 'identity.list'] });
+    var app = new App({ name: 'Wish CLI', permissions: [] });
 
     app.once('ready', function() {
 
