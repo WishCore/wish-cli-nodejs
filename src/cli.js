@@ -7,6 +7,8 @@ if(!process.env.CORE && !process.env.TCP) {
 
 var App = require('wish-app').App;
 var inspect = require("util").inspect;
+var bson = require('bson-buffer');
+var BSON = new bson();
 
 var useColors = true;
 var maxInspectDepth = 10;
@@ -65,10 +67,11 @@ function Cli() {
             };
 
             var repl = require("repl").start({
-                prompt : "wish> ",
-                input : process.stdin,
-                output : process.stdout,
-                terminal : true,
+                prompt: "wish> ",
+                input: process.stdin,
+                output: process.stdout,
+                terminal: true,
+                ignoreUndefined: true,
                 writer : function (obj) {
                     return inspect(obj, maxInspectDepth, null, useColors);
                 }
@@ -95,6 +98,7 @@ function Cli() {
                 for(var i in Core) {
                     repl.context[i] = Core[i];
                 }
+                repl.context['BSON'] = BSON;
             }
 
             syncctx();
