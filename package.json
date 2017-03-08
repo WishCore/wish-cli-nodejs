@@ -1,13 +1,13 @@
 {
   "name": "wish-cli",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "author": "André Kaustell <andre.kaustell@controlthings.fi>",
   "description": "A simple REPL based command line tool for accessing the Wish Core.",
   "main": "src/cli.js",
   "license": "Apache-2.0",
   "dependencies": {
     "bson-buffer": "1.0.2",
-    "wish-app": "0.6.14"
+    "wish-app": "0.6.15"
   },
   "bin": {
     "wishcli": "./bin/cli"
