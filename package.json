@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bson-buffer": "1.0.2",
-    "wish-app": "0.6.15"
+    "wish-app": "0.6.16"
   },
   "bin": {
     "wishcli": "./bin/cli"
