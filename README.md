@@ -18,16 +18,10 @@ npm install -g wish-cli
 wish-cli
 ```
 
-or
-
-```sh
-TCP=1 CORE=localhost:9094 wish-cli
-```
-
 ## Parameters
 
 ```sh
-TCP=1                 # connect using plain tcp without encryption
-CORE=localhost:9094   # connect to core on localhost at port 9094, default is localhost:9090
+TCP=1                 # connect using plain tcp without encryption (default)
+CORE=localhost:9090   # connect to core on localhost at port 9090, default is localhost:9094
 WSID=cli              # set the service id WSID, defaults to cli.
 ```
