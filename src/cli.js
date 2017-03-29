@@ -17,6 +17,7 @@ var pkg = require("./../package.json");
 
 if (!quiet) {
     console.log("Welcome to Wish CLI v" + pkg.version);
+    console.log("\x1b[33mNot everything works as expected! You have been warned.\x1b[39m");
 }
 
 if (!process.env.WSID) {
@@ -28,6 +29,13 @@ function Cli() {
     var app = new App({ name: 'Wish CLI', permissions: [] });
 
     app.once('ready', function() {
+        
+        app.core('version', [], function(err, version) {
+            if(err) { return; };
+            
+            console.log("\x1b[32mConnected to Wish Core "+version+"\x1b[39m");
+        });
+        
 
         app.core('methods', [], function(err, methods) {
 
