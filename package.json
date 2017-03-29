@@ -1,6 +1,6 @@
 {
   "name": "wish-cli",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "author": "André Kaustell <andre.kaustell@controlthings.fi>",
   "description": "A simple REPL based command line tool for accessing the Wish Core.",
   "main": "src/cli.js",
