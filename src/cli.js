@@ -5,6 +5,9 @@ if(!process.env.CORE && !process.env.TCP) {
     process.env.TCP = '1';
 }
 
+
+var WebSocket = require('ws');
+var Client = require('wish-rpc').Client;
 var App = require('wish-app').App;
 var inspect = require("util").inspect;
 var bson = require('bson-buffer');
@@ -36,7 +39,6 @@ function Cli() {
             console.log("\x1b[32mConnected to Wish Core "+version+"\x1b[39m");
         });
         
-
         app.core('methods', [], function(err, methods) {
 
             for (var i in methods) {
@@ -106,11 +108,51 @@ function Cli() {
                 for(var i in Core) {
                     repl.context[i] = Core[i];
                 }
-                repl.context['BSON'] = BSON;
+                repl.context.BSON = BSON;
+                repl.context.directory = {
+                    publish: function(uid) {
+                        console.log('exporting ', uid);
+                        Core.identity.export(uid, 'document', function(err, data) {
+                            console.log('signing ', err, uid, data);
+                            if(err) { return printResult(data); }
+                            
+                            // this timeout should not be needed
+                            setTimeout(function() {                            
+                                Core.identity.sign(uid, data, function(err, data) {
+                                    console.log('publishing', err, data);
+                                    if(err) { return printResult(data); }
+
+                                    client.request('directory.publish', [data]); 
+                                });
+                            }, 1000);                                
+                            
+                        });
+                        
+                    },
+                    unpublish: function(id) { client.request('directory.unpublish', [id]); },
+                    find: function(alias) { client.request('directory.find', [alias], printResult); }
+                };
             }
 
             syncctx();
-       });
+        });
+
+
+        var ws = new WebSocket('ws://localhost:3030');
+
+        var client = new Client(function(msg) { ws.send(BSON.serialize(msg)); });
+
+        ws.on('open', function() {
+            client.request('directory.find', ['André'], function(err, data) {
+                console.log('directory find returned:', err, data);
+            });
+        });
+        
+        ws.on('message', function(message, flags) {
+            if ( !flags.binary ) { return; }
+            
+            client.messageReceived(BSON.deserialize(message));
+        });
     });
 }
 
