@@ -116,16 +116,12 @@ function Cli() {
                             console.log('signing ', err, uid, data);
                             if(err) { return printResult(data); }
                             
-                            // this timeout should not be needed
-                            setTimeout(function() {                            
-                                Core.identity.sign(uid, data, function(err, data) {
-                                    console.log('publishing', err, data);
-                                    if(err) { return printResult(data); }
+                            Core.identity.sign(uid, data, function(err, data) {
+                                console.log('publishing', err, data);
+                                if(err) { return printResult(data); }
 
-                                    client.request('directory.publish', [data]); 
-                                });
-                            }, 1000);                                
-                            
+                                client.request('directory.publish', [data]); 
+                            });
                         });
                         
                     },
@@ -137,15 +133,13 @@ function Cli() {
             syncctx();
         });
 
-
-        var ws = new WebSocket('ws://localhost:3030');
+        // Connect to Directory service for finding friends 
+        var ws = new WebSocket('wss://mist.controlthings.fi:3030');
 
         var client = new Client(function(msg) { ws.send(BSON.serialize(msg)); });
 
         ws.on('open', function() {
-            client.request('directory.find', ['André'], function(err, data) {
-                console.log('directory find returned:', err, data);
-            });
+            // Connected to directory
         });
         
         ws.on('message', function(message, flags) {
