@@ -111,13 +111,10 @@ function Cli() {
                 repl.context.BSON = BSON;
                 repl.context.directory = {
                     publish: function(uid) {
-                        console.log('exporting ', uid);
-                        Core.identity.export(uid, 'document', function(err, data) {
-                            console.log('signing ', err, uid, data);
+                        Core.identity.export(uid, function(err, data) {
                             if(err) { return printResult(data); }
                             
                             Core.identity.sign(uid, data, function(err, data) {
-                                console.log('publishing', err, data);
                                 if(err) { return printResult(data); }
 
                                 client.request('directory.publish', [data]); 
