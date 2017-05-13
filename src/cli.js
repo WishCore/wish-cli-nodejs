@@ -40,7 +40,6 @@ function Cli() {
         });
         
         app.core('methods', [], function(err, methods) {
-
             for (var i in methods) {
                 var path = i.split('.');
                 var node = Core;
@@ -72,8 +71,17 @@ function Cli() {
                         app.core(i, args, cb); 
                     };
                 })(i);
+                
                 //Init help hints
-                Object.defineProperty(node[path[0]], "_help_", {value : '('+methods[i].args +') '+ methods[i].doc });
+                var args = methods[i].args || '?';
+                var doc = methods[i].doc || 'n/a';
+
+                Object.defineProperty(node[path[0]], "inspect", {
+                    enumerable: false,
+                    configurable: false,
+                    writable: false,
+                    value: (function(args, doc) { return function() { return '\x1b[33m'+args+'\x1b[37m '+doc+'\x1b[39m'; }; })(args, doc)
+                });                
             };
 
             var repl = require("repl").start({
@@ -108,6 +116,14 @@ function Cli() {
                 for(var i in Core) {
                     repl.context[i] = Core[i];
                 }
+                
+                repl.context.help = function() {
+                    console.log('Help:');
+                    console.log();
+                    console.log('Available commands from wish-api:');
+                    console.log(inspect(Core, { colors: true, depth: 10 }));
+                };
+                
                 repl.context.BSON = BSON;
                 repl.context.directory = {
                     publish: function(uid) {
