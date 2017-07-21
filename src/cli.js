@@ -1,14 +1,6 @@
-
-if(!process.env.CORE && !process.env.TCP) {
-    console.log("Connecting using default parameters, unsecure connection to localhost:9094.");
-    process.env.CORE = 'localhost:9094';
-    process.env.TCP = '1';
-}
-
-
+var WishApp = require('mist-api').WishApp;
 var WebSocket = require('ws');
 var Client = require('wish-rpc').Client;
-var App = require('wish-app').App;
 var inspect = require("util").inspect;
 var bson = require('bson-buffer');
 var BSON = new bson();
@@ -17,6 +9,8 @@ var useColors = true;
 var maxInspectDepth = 10;
 var quiet = false;
 var pkg = require("./../package.json");
+
+"use strict";
 
 if (!quiet) {
     console.log("Welcome to Wish CLI v" + pkg.version);
@@ -28,18 +22,17 @@ if (!process.env.WSID) {
 }
 
 function Cli() {
-
-    var app = new App({ name: 'Wish CLI', permissions: [] });
+    var app = new WishApp({ name: 'Wish CLI' }); // , protocols: [] });
 
     app.once('ready', function() {
         
-        app.core('version', [], function(err, version) {
+        app.request('version', [], function(err, version) {
             if(err) { return; };
             
             console.log("\x1b[32mConnected to Wish Core "+version+"\x1b[39m");
         });
         
-        app.core('methods', [], function(err, methods) {
+        app.request('methods', [], function(err, methods) {
             for (var i in methods) {
                 var path = i.split('.');
                 var node = Core;
@@ -68,7 +61,7 @@ function Cli() {
                                 args.push(arguments[j]);
                             }
                         }
-                        app.core(i, args, cb); 
+                        app.request(i, args, cb); 
                     };
                 })(i);
                 

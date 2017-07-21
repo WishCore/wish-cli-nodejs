@@ -7,8 +7,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bson-buffer": "1.0.2",
-    "wish-app": "0.6.17",
-    "wish-rpc": "0.6.3",
+    "mist-api": "0.0.18",
     "ws": "2.3.1"
   },
   "bin": {
