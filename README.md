@@ -24,5 +24,5 @@ wish-cli
 
 ```sh
 TCP=1                 # connect using plain tcp without encryption (default)
-CORE=localhost:9090   # connect to core on localhost at port 9090, default is localhost:9094
+CORE=9090             # connect to core on localhost at port 9090, default is 9094
 ```

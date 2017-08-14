@@ -21,8 +21,12 @@ if (!process.env.WSID) {
     process.env.WSID = 'cli';
 }
 
+if (!process.env.CORE) {
+    process.env.CORE = '9094';
+}
+
 function Cli() {
-    var app = new WishApp({ name: 'Wish CLI' }); // , protocols: [] });
+    var app = new WishApp({ name: 'Wish CLI', corePort: parseInt(process.env.CORE) }); // , protocols: [] });
 
     app.once('ready', function() {
         
