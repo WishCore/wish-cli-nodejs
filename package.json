@@ -8,8 +8,9 @@
   "dependencies": {
     "bson-buffer": "1.0.2",
     "mist-api": "0.0.18",
-    "ws": "2.3.1",
-    "wish-rpc": "0.6.4"
+    "tiny-worker": "2.1.1",
+    "wish-rpc": "0.6.4",
+    "ws": "2.3.1"
   },
   "bin": {
     "wish-cli": "./bin/cli"
