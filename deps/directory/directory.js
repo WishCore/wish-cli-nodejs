@@ -48,7 +48,7 @@ function Directory(repl, printResult, wish) {
                                 client.request('directory.publish', [data, claim, pow], function(err, data) {
                                     if (err) { return printResult(err, data); }
 
-                                    console.log('Published \033[1m', BSON.deserialize(cert.data).alias, '\033[0mto directory.');
+                                    console.log('Published\033[1m', BSON.deserialize(cert.data).alias, '\033[0mto directory.');
                                     repl.displayPrompt(true);
                                 });
                             }
