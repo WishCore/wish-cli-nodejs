@@ -55,7 +55,7 @@ function worker() {
     while (!stop) {
         
         var hash = sha256.create();
-        hash.update(i +':'+ c +':');
+        hash.update(i +':'+ c +':'); // sha256 (index : counter : work)
         hash.update(work);
         var shasum = new Uint8Array(hash.array());
         

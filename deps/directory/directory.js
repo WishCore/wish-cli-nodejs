@@ -27,9 +27,24 @@ function Directory(repl, printResult, wish) {
     });
     
     return {
-        publish: function(uid) {
+        time: function() {
+            client.request('time', [], function(err, timestamp) {
+                if (err) { return console.log('Error getting time from server', timestamp); }
+                
+                console.log('Time from directory:', new Date(timestamp), '('+timestamp+')');
+            });
+        },
+        publish: function(uid, directoryData) {
             wish.identity.export(uid, function(err, cert) {
                 if(err) { return printResult(err, cert); }
+                
+                if (directoryData) {
+                    var directoryEntry = BSON.deserialize(cert.data);
+                    directoryEntry.meta = directoryData;
+                    cert.data = BSON.serialize(directoryEntry);
+                    
+                    //console.log('Would publish this:', directoryEntry);
+                }
 
                 wish.identity.sign(uid, cert, function(err, data) {
                     if(err) { return printResult(err, data); }
