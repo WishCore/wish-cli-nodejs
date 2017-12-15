@@ -93,7 +93,6 @@ function Cli() {
             });
 
             repl.on("exit", function () {
-                app.disconnect();
                 console.log("Bye!");
                 process.exit(0);
             });
