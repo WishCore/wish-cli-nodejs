@@ -65,7 +65,7 @@ function Cli() {
                                 args.push(arguments[j]);
                             }
                         }
-                        app.request(i, args, cb); 
+                        return app.request(i, args, cb); 
                     };
                 })(i);
                 
@@ -118,6 +118,10 @@ function Cli() {
                     console.log();
                     console.log('Available commands from wish-api:');
                     console.log(inspect(Core, { colors: true, depth: 10 }));
+                };
+                
+                repl.context.cancel = function(id) {
+                    app.cancel(id);
                 };
                 
                 repl.context.BSON = BSON;
