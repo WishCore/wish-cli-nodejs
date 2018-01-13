@@ -65,7 +65,9 @@ function Cli() {
                                 args.push(arguments[j]);
                             }
                         }
-                        return app.request(i, args, cb); 
+                        var reqId = app.request(i, args, cb); 
+                        
+                        console.log("\x1b[32mreqId: "+reqId+"\x1b[39m");
                     };
                 })(i);
                 
@@ -101,10 +103,11 @@ function Cli() {
                 if(err) {
                     console.log("Error:", data);
                 } else {
-                    console.log(inspect(data, maxInspectDepth, null, useColors));
+                    console.log('\n'+inspect(data, maxInspectDepth, null, useColors));
                 }
                 repl.context.result = data;
                 repl.context.error = err;
+                repl.displayPrompt();
             }
 
             function syncctx() {
@@ -115,6 +118,8 @@ function Cli() {
                 
                 repl.context.help = function() {
                     console.log('Help:');
+                    console.log();
+                    console.log('  Responses from API commands are stored in the global variable result.');
                     console.log();
                     console.log('Available commands from wish-api:');
                     console.log(inspect(Core, { colors: true, depth: 10 }));
