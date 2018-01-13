@@ -13,8 +13,8 @@ var pkg = require("./../package.json");
 "use strict";
 
 if (!quiet) {
-    console.log("Welcome to Wish CLI v" + pkg.version);
-    console.log("\x1b[33mNot everything works as expected! You have been warned.\x1b[39m");
+    console.log("\x1b[33mWelcome to Wish CLI v" + pkg.version + '\x1b[39m');
+    console.log("Try 'help()' to get started.");
 }
 
 if (!process.env.WSID) {
