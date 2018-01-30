@@ -131,13 +131,6 @@ function Cli() {
                 
                 repl.context.BSON = BSON;
                 repl.context.directory = new Directory(repl, printResult, Core);
-                repl.context.remote = {
-                    identity: {
-                        list: function(host) {
-                            Core.send
-                        }
-                    }
-                }
             }
 
             syncctx();

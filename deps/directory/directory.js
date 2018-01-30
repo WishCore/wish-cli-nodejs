@@ -88,7 +88,25 @@ function Directory(repl, printResult, wish) {
                 });        
             });
         },
-        find: function(alias) { client.request('directory.find', [alias], printResult); }
+        find: function(alias) {
+            client.request('directory.find', [alias], (err, data) => {
+                console.log('\n\x1b[33mDirectory search result:\x1b[39m');
+                
+                var none = true;
+                for(var i in data) {
+                    console.log('  result['+i+']: \x1b[32m'+data[i].alias+'\x1b[39m ('+data[i].uid.toString('hex')+')');
+                    none = false;
+                }
+                
+                if (none) { console.log('  No matches found to: '+alias); }
+                
+                repl.context.result = data;
+                repl.displayPrompt(true);
+            });
+        },
+        friendRequest: function(uid, entry) {
+            wish.identity.friendRequest(uid, entry.cert, printResult);
+        }
     };
 }
 
