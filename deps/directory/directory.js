@@ -88,13 +88,18 @@ function Directory(repl, printResult, wish) {
                 });        
             });
         },
-        find: function(alias) {
+        remove: function(id) {
+            client.request('directory.remove', [id], (err, data) => {
+                console.log('\n\x1b[33mDirectory remove:\x1b[39m\x1b[32m'+id+'\x1b[39m', err, data);
+            });
+        },
+        find: function(alias, showId) {
             client.request('directory.find', [alias], (err, data) => {
                 console.log('\n\x1b[33mDirectory search result:\x1b[39m');
                 
                 var none = true;
                 for(var i in data) {
-                    console.log('  result['+i+']: \x1b[32m'+data[i].alias+'\x1b[39m ('+data[i].uid.toString('hex')+')');
+                    console.log('  result['+i+']: \x1b[32m'+data[i].alias+'\x1b[39m ('+data[i].uid.toString('hex')+')' + (showId ? data[i]._id : '') );
                     none = false;
                 }
                 
