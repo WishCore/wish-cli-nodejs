@@ -4,8 +4,7 @@ A simple REPL based command line tool for accessing the Wish Core.
 
 This is bleeding egde software and WILL BREAK from time to time, you have been warned.
 
-This package is dependent on the mist-api package, which currently is working with Linux x64/ia32, OSX x64 (see workaround in mist-examples-nodejs) and Raspberry Pi, on nodejs v6.x only. To get it working you also need to run a Wish Core on the same host.
-
+This package is dependent on the wish-core-api package, which currently is working with Linux x64/ia32, OSX x64, on nodejs v6.x only. To get it working you also need to run a Wish Core on the same host.
 
 ## Prerequisites
 
