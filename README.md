@@ -9,17 +9,11 @@ This package is dependent on the mist-api package, which currently is working wi
 
 ## Prerequisites
 
-*If you ended up here by accident, you might not get this to work.*
+If you are running on Linux x64 or OSX x64 everything should work out of the box according to the instructions below. Windows is not supported yet.
 
-1) Download and install `node.js` v.6.x. (tested on v6.9.2)
+Download and install node.js v6.x: https://nodejs.org/dist/latest-v6.x/. You may use Node Version Manager `nvm` (https://github.com/creationix/nvm).
 
-2) Download and run wish-core (https://mist.controlthings.fi/developer).
-
-```sh
-wget https://mist.controlthings.fi/dist/wish-core-v0.8.0-beta-2-x64-linux
-chmod +x ./wish-core-v0.8.0-beta-2-x64-linux
-./wish-core-v0.8.0-beta-2-x64-linux
-```
+You will need to have an appropriate wish-core (the peer-to-peer identity based communication layer mist is based on). The source is available at: https://github.com/WishCore/wish-c99.
 
 ## Install
 
