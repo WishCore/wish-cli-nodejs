@@ -1,4 +1,4 @@
-var WishApp = require('mist-api').WishApp;
+var WishApp = require('wish-core-api').WishApp;
 var inspect = require("util").inspect;
 var bson = require('bson-buffer');
 var BSON = new bson();
@@ -14,26 +14,33 @@ var pkg = require("./../package.json");
 
 if (!quiet) {
     console.log("\x1b[33mWelcome to Wish CLI v" + pkg.version + '\x1b[39m');
-    console.log("Try 'help()' to get started.");
 }
 
 if (!process.env.WSID) {
     process.env.WSID = 'cli';
 }
 
-if (!process.env.CORE) {
-    process.env.CORE = '9094';
-}
-
 function Cli() {
-    var app = new WishApp({ name: 'Wish CLI', corePort: parseInt(process.env.CORE) }); // , protocols: [] });
+    var self = this;
+    var app = new WishApp({ name: 'Wish CLI', corePort: parseInt(process.env.CORE) || 9094 }); // , protocols: [] });
 
-    app.once('ready', function() {
-        
+    var connectTimeout = setTimeout(() => { console.log('Timeout connecting to Wish Core.'); process.exit(0); }, 5000);
+    
+    var registered = false;
+
+    app.on('ready', function(ready) {
+        if (!ready) { console.log('\nDisconnected from Wish Core.'); if(self.repl) { self.repl.displayPrompt(); } return; }
+
+        if(registered) { return; }
+        registered = true;
+
+        clearTimeout(connectTimeout);
+            
         app.request('version', [], function(err, version) {
             if(err) { return; };
             
             console.log("\x1b[32mConnected to Wish Core "+version+"\x1b[39m");
+            console.log("Try 'help()' to get started.");
         });
         
         app.request('methods', [], function(err, methods) {
@@ -93,6 +100,8 @@ function Cli() {
                     return inspect(obj, maxInspectDepth, null, useColors);
                 }
             });
+            
+            self.repl = repl;
 
             repl.on("exit", function () {
                 console.log("Bye!");
