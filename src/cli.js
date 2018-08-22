@@ -2,6 +2,8 @@ var WishApp = require('wish-core-api').WishApp;
 var inspect = require("util").inspect;
 var bson = require('bson-buffer');
 var BSON = new bson();
+var Base64 = require('base64-js')
+
 
 var Directory = require('../deps/directory/directory.js').Directory;
 
@@ -140,6 +142,7 @@ function Cli() {
                 
                 repl.context.BSON = BSON;
                 repl.context.directory = new Directory(repl, printResult, Core);
+                repl.context.Base64 = Base64
             }
 
             syncctx();
