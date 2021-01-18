@@ -1,15 +1,15 @@
 {
   "name": "wish-cli",
   "version": "0.8.2",
-  "author": "André Kaustell <andre.kaustell@controlthings.fi>",
+  "author": "André Kaustell <andre.kaustell@wishtech.fi>",
   "description": "A simple REPL based command line tool for accessing the Wish Core.",
   "main": "src/cli.js",
   "license": "Apache-2.0",
   "dependencies": {
+    "@wishcore/wish-rpc": "0.6.8",
+    "@wishcore/wish-sdk": "0.4.0-beta-7",
     "bson-buffer": "1.0.2",
     "tiny-worker": "2.1.1",
-    "wish-core-api": "0.4.0-beta-5",
-    "wish-rpc": "0.6.5",
     "ws": "2.3.1"
   },
   "bin": {

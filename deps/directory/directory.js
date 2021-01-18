@@ -8,12 +8,12 @@ var PowWorker = require('./pow-worker.js').PowWorker;
 function Directory(repl, printResult, wish) {
     
     // Connect to Directory service for finding friends 
-    var ws = new WebSocket('wss://mist.controlthings.fi:3030');
+    var ws = new WebSocket('wss://relay.wishtech.fi', { rejectUnauthorized: false });
 
     var client = new Client(function(msg) { ws.send(BSON.serialize(msg)); });
 
-    ws.on('error', function() {
-        console.log('Could not connect to directory.');
+    ws.on('error', function(error) {
+        console.log('Could not connect to directory.', error);
     });
 
     ws.on('open', function() {
