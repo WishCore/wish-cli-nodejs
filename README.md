@@ -2,13 +2,11 @@
 
 A simple REPL based command line tool for accessing the Wish Core. 
 
+You will need to have an appropriate `wish-core` (the peer-to-peer identity based communication layer). The source is available at: https://github.com/WishCore/wish-c99.
+
+For building applications see: https://github.com/WishCore/wish-api-node
+
 This is bleeding egde software and WILL BREAK from time to time, you have been warned.
-
-## Prerequisites
-
-If you are running on Linux x64 or OSX x64 everything should work out of the box according to the instructions below. Windows is not supported yet.
-
-You will need to have an appropriate wish-core (the peer-to-peer identity based communication layer mist is based on). The source is available at: https://github.com/WishCore/wish-c99.
 
 ## Install
 
@@ -94,5 +92,5 @@ identity.update(uid, { dateOfBirth: null, telephone: null });
 ## Parameters
 
 ```sh
-CORE=9090             # connect to core on localhost at port 9090, default is 9094
+CORE=9090       # connect to core on localhost at port 9090, default is 9094
 ```
