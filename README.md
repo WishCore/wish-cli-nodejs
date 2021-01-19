@@ -4,20 +4,16 @@ A simple REPL based command line tool for accessing the Wish Core.
 
 This is bleeding egde software and WILL BREAK from time to time, you have been warned.
 
-This package is dependent on the wish-core-api package, which currently is working with Linux x64/ia32, OSX x64, on nodejs v6.x only. To get it working you also need to run a Wish Core on the same host.
-
 ## Prerequisites
 
 If you are running on Linux x64 or OSX x64 everything should work out of the box according to the instructions below. Windows is not supported yet.
-
-Download and install node.js v6.x: https://nodejs.org/dist/latest-v6.x/. You may use Node Version Manager `nvm` (https://github.com/creationix/nvm).
 
 You will need to have an appropriate wish-core (the peer-to-peer identity based communication layer mist is based on). The source is available at: https://github.com/WishCore/wish-c99.
 
 ## Install
 
 ```sh
-npm install -g wish-cli
+npm install -g @wishcore/wish-cli
 ```
 
 ## Run

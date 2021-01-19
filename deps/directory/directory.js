@@ -1,5 +1,5 @@
 var WebSocket = require('ws');
-var Client = require('wish-rpc').Client;
+var Client = require('@wishcore/wish-rpc').Client;
 var bson = require('bson-buffer');
 var BSON = new bson();
 

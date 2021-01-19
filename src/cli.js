@@ -1,4 +1,4 @@
-var WishApp = require('wish-core-api').WishApp;
+var WishApp = require('@wishcore/wish-sdk').App;
 var inspect = require("util").inspect;
 var bson = require('bson-buffer');
 var BSON = new bson();
