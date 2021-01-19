@@ -1,5 +1,5 @@
 {
-  "name": "wish-cli",
+  "name": "@wishcore/wish-cli",
   "version": "0.8.2",
   "author": "André Kaustell <andre.kaustell@wishtech.fi>",
   "description": "A simple REPL based command line tool for accessing the Wish Core.",
