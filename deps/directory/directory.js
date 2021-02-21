@@ -20,8 +20,8 @@ function Directory(repl, printResult, wish) {
         // Connected to directory
     });
 
-    ws.on('message', function(message, flags) {
-        if ( !flags.binary ) { return; }
+    ws.on('message', function(message) {
+        if (!Buffer.isBuffer(message)) { return; }
 
         client.messageReceived(BSON.deserialize(message));
     });
